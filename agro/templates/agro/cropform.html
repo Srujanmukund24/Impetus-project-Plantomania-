@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Plant Nutrition Form</title>
+  </head>
+  <body>
+    <h1>Plant Nutrition Form</h1>
+    <form action="{% url 'cropresult' %}">
+        {% csrf_token %}
+      <label for="temperature">Temperature:</label>
+      <input type="number" id="temperature" name="temperature" required><br><br>
+
+      <label for="humidity">Humidity:</label>
+      <input type="number" id="humidity" name="humidity" required><br><br>
+
+      <label for="moisture">PH:</label>
+      <input type="number" id="PH" name="ph" required><br><br>
+
+      <label for="nitrogen">Nitrogen (N):</label>
+      <input type="number" id="nitrogen" name="N" required><br><br>
+
+      <label for="phosphorus">Phosphorus (P):</label>
+      <input type="number" id="phosphorus" name="P" required><br><br>
+
+      <label for="potassium">Potassium (K):</label>
+      <input type="number" id="potassium" name="K" required><br><br>
+
+       <label for="rainfall">Rainfall :</label>
+      <input type="rainfall" id="rainfall" name="rainfall" required><br><br>
+
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
