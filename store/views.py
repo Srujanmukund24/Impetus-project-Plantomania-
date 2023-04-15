@@ -3,7 +3,8 @@ from .models import Product,CartItem,Category
 from django.contrib import messages
 
 def store(request):
-    products = Product.objects.all()
+    # categoryy = request.POST.get('plant_options')
+    products = Product.objects.filter(category__name=request.POST.get('plant_options'))
     context = {
         'products': products
     }
@@ -52,3 +53,5 @@ def update_cart(request):
         cart_item.quantity = quantity
         cart_item.save()
     return redirect('cart')
+def plantop(request):
+    return render(request, 'store/plantop.html')

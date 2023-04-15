@@ -1,0 +1,13 @@
+<form method="post" action="{% url 'store' %}">
+  {% csrf_token %}
+
+
+  <label for="plant_options">Plant Options:</label>
+  <select id="plant_options" name="plant_options">
+    <option value="flowering">Flowering</option>
+    <option value="nonflowering">Non-Flowering</option>
+    <option value="bonsai">Bonsai</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
