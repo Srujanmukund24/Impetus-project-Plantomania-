@@ -1,0 +1,40 @@
+
+  <h1>Your Cart</h1>
+
+  {% if cart_items %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+          <tr>
+            <td>{{ item.product.name }}</td>
+            <td>
+              <form method="POST" action="{% url 'update_cart' %}">
+  {% csrf_token %}
+  <input type="hidden" name="product_id" value="{{ item.product.id }}">
+  <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.product.stock }}" required>
+  <button type="submit">Update</button>
+</form>
+
+            </td>
+            <td>{{ item.product.price }}</td>
+
+             <td>{{ item.product.price}} * {{item.quantity }}</td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="3" align="right"><strong>Total:</strong></td>
+          <td>{{ total_price }}</td>
+        </tr>
+      </tbody>
+    </table>
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}

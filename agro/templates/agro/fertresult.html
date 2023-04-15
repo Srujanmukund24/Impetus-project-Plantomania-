@@ -1,0 +1,22 @@
+{% load static %}
+
+<div>Name-{{ans}}</div>
+<div>Description-{{ans1}}</div>
+{% if ans == 'urea' %}
+  <img src="{% static 'urea.jpg' %}" class="Brand" alt="">
+{%  endif %}
+{% if ans == 'DAP' %}
+  <img src="{% static 'DAP.jpg' %}" class="Brand" alt="">
+{%  endif %}
+{% if ans == '14-35-14' %}
+  <img src="{% static '14-35-14.jpg' %}" class="Brand" alt="">
+{%  endif %}
+{% if ans == '28-28' %}
+  <img src="{% static '28-28.jpg' %}" class="Brand" alt="">
+{%  endif %}
+{% if ans == '17-17-17' %}
+  <img src="{% static '17-17-17.jpg' %}" class="Brand" alt="">
+{%  endif %}
+{% if ans == '20-20' %}
+  <img src="{% static '20-20.jpg' %}" class="Brand" alt="">
+{%  endif %}

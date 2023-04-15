@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'users.apps.UsersConfig',
      'agro.apps.AgroConfig',
+     'store.apps.StoreConfig',
+
+
+
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Plant Information Form</title>
+</head>
+<body>
+	<h1>Plant Information Form</h1>
+	<form action="{% url 'fertresult' %}">
+		<label for="nitrogen">Nitrogen:</label>
+		<input type="number" id="nitrogen" name="N"><br><br>
+
+		<label for="phosphorus">Phosphorus:</label>
+		<input type="number" id="phosphorus" name="P"><br><br>
+
+		<label for="potassium">Potassium:</label>
+		<input type="number" id="potassium" name="K"><br><br>
+
+		<label for="temperature">Temperature:</label>
+		<input type="number" id="temperature" name="temperature"><br><br>
+
+		<label for="humidity">Humidity:</label>
+		<input type="number" id="humidity" name="humidity"><br><br>
+
+		<label for="moisture">Moisture:</label>
+		<input type="number" id="moisture" name="moisture"><br><br>
+
+		<label for="crop">Crop:</label>
+		<select id="crop" name="crop">
+			<option value="barley">Barley</option>
+			<option value="cotton">Cotton</option>
+			<option value="groundnut">Groundnut</option>
+			<option value="maize">Maize</option>
+			<option value="millet">Millet</option>
+			<option value="oilseeds">Oilseeds</option>
+			<option value="paddy">Paddy</option>
+			<option value="pulses">Pulses</option>
+			<option value="sugarcane">Sugarcane</option>
+			<option value="tobacco">Tobacco</option>
+			<option value="wheat">Wheat</option>
+		</select><br><br>
+
+		<label for="soil-type">Soil Type:</label>
+		<select id="soil-type" name="soil-type">
+			<option value="black">Black</option>
+			<option value="clayey">Clayey</option>
+			<option value="loamy">Loamy</option>
+			<option value="red">Red</option>
+			<option value="sandy">Sandy</option>
+		</select><br><br>
+
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>
