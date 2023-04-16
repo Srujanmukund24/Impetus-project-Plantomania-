@@ -1,0 +1,82 @@
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>Checkout</h2>
+                <hr>
+                <h4>Billing Information</h4>
+                <form method="POST" action="{% url 'createp' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" name="state" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">Zip Code</label>
+                        <input type="text" class="form-control" id="zip" name="zip" required>
+                    </div>
+
+                     </form>
+                    <h4>Order Summary</h4>
+                    {% for item in cart_items %}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{{ item.product.image.url }}" class="img-fluid">
+                            </div>
+                            <div class="col-md-8">
+                                <h5>{{ item.product.name }}</h5>
+                                <p>Quantity: {{ item.quantity }}</p>
+                                <p>Price: ${{ item.product.price }}</p>
+                            </div>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                    <h5>Total Price: ${{ total_price }}</h5>
+                  <form class="text-center border border-light p-5" action="success" method="POST">
+
+{% csrf_token %}
+
+
+
+
+<!-- RAZORPAY INTEGRATION HERE -->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+    data-key="rzp_test_xdK2Xh5HZzMR5n"
+    data-amount="{{ total_price1 }}"
+    data-currency="INR"
+    data-order_id="{{payment.id}}"
+    data-buttontext= "cc"
+    data-name="Professional Cipher"
+    data-description="Django and Data Science"
+    data-image="https://example.com/your_logo.jpg"
+    data-prefill.name="PC"
+    data-prefill.email="pc@studygyaan.com"
+    data-theme.color="#F37254">
+</script>
+</form>
+</div>
+</div>
+
+
+            </div>
+        </div>
+    </div>
+
+
