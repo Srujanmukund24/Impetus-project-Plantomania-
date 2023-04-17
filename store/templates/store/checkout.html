@@ -50,7 +50,7 @@
                     <h5>Total Price: ${{ total_price }}</h5>
                   <form class="text-center border border-light p-5" action="success" method="POST">
 
-{% csrf_token %}
+                          {% csrf_token %}
 
 
 
@@ -62,12 +62,12 @@
     data-amount="{{ total_price1 }}"
     data-currency="INR"
     data-order_id="{{payment.id}}"
-    data-buttontext= "cc"
-    data-name="Professional Cipher"
-    data-description="Django and Data Science"
+    data-buttontext= "Pay with Razorpay"
+    data-name="Plantomania"
+    data-description=" Plant Website"
     data-image="https://example.com/your_logo.jpg"
-    data-prefill.name="PC"
-    data-prefill.email="pc@studygyaan.com"
+    data-prefill.name="Mcgill"
+    data-prefill.email="Mcgill45@gmail.com"
     data-theme.color="#F37254">
 </script>
 </form>
