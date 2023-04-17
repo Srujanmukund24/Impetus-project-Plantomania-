@@ -7,7 +7,7 @@
 
 body {
     height: auto;
-    background-color: rgb(173, 255, 173);
+    background-color: rgb(248, 249, 248);
     scroll-behavior: smooth;
 }
 
@@ -46,6 +46,7 @@ body {
 .navbar {
     background-color: #053907d9;
     height: 12%;
+    
 }
 
 .navbar-nav {
@@ -100,7 +101,7 @@ body {
     border-bottom: 2px solid lightgreen;
     display: grid;
     grid-template-rows: 10% 90%;
-    height: 65vh;
+    height: 75vh;
     width: 100%;
     padding-top: 20px;
     background-color: rgb(187 255 187);
@@ -117,6 +118,7 @@ body {
 }
 
 .box {
+    margin-top: 20px;
     display: grid;
     margin-left: 6%;
     margin-right: 6%;
@@ -155,15 +157,16 @@ body {
 
 .products button {
     width: 100px;
+    height: 40px;
     margin: 0px 25%;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
     font-family: 'Arial Narrow Bold', sans-serif ;
     color: white;
     background-color: rgba(31, 177, 31, 0.892);
     border-radius: 4px;
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border:2px solid rgba(31, 177, 31, 0.892);
 
 }
@@ -214,3 +217,253 @@ body {
 
 
 
+/* main section css
+ */
+
+ .mainsection{
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-items: center;
+    align-items: center;
+    margin-top: 5vh;
+    padding: 5%;
+
+ }
+
+ .feature{
+    margin: 20px auto;
+    height: 50%;
+    display: flex;
+    flex-direction: column; 
+
+ }
+
+ /* .title{
+    margin-left: 50px;
+ } */
+
+ .content{
+    display: flex;
+    flex-direction: row;
+    padding: 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+ }
+ .content .content-img{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    
+ }
+ .content .content-descp{
+    width: 60%;
+    height: 90%;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+ }
+ .content button{
+    width: 15%;
+    margin-top: 10px;
+ }
+
+ .content a{
+    color: white;
+    text-decoration: none;
+ }
+ .content-img img{
+    height: 100%;
+    width: 80%;
+    margin: auto;
+ }
+ 
+
+ @media (max-width:700px) {
+  
+    .content{
+        flex-direction: column;
+    
+    }
+    .agro-content{
+        flex-direction: column-reverse;
+    }
+
+    .mainsection{
+        height: 180vh;
+    }
+
+    .feature{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content .content-img{
+        margin: 10px auto;
+        width: 65%;
+    }
+    .content .content-descp{
+        width: 75%;}
+
+    .content button{
+        width: 29%;
+        margin-top: 10px;
+     }
+
+     .content-img img{
+        height: 100%;
+        width: 100%;
+        margin: auto;
+     }
+     
+ .title{
+    margin-left: 0px;
+ }
+ }
+
+ /*TOP PRODUCTS CSS STARTS*/
+.top-products
+{
+    background-color: #B6FF9C;
+}
+
+.section-products .header {
+    margin-bottom: 50px;
+}
+
+.section-products .header h3 {
+    text-align: center;
+    font-size: 60px;
+    color: #053907d9;
+    font-family: 'Quicksand',sans-serif;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+
+.section-products .single-product {
+    margin-bottom: 26px;
+}
+
+.section-products .single-product .part-1 {
+    position: relative;
+    height: 290px;
+    max-height: 290px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.section-products .single-product .part-1::before {
+		position: absolute;
+		content: "";
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transition: all 0.3s;
+}
+
+
+.section-products #product-1 .part-1::before {
+    background: url(/Media/HIBISCUS.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.section-products #product-2 .part-1::before {
+    background: url(/Media/HIBISCUS.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.section-products #product-3 .part-1::before {
+    background: url(/Media/HIBISCUS.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.section-products #product-4 .part-1::before {
+    background: url(/Media/HIBISCUS.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.section-products .single-product .part-1 .discount,
+.section-products .single-product .part-1 .new {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: #ffffff;
+    background-color: #fe302f;
+    padding: 2px 8px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.section-products .single-product .part-1 .new {
+    left: 0;
+    background-color: #444444;
+}
+
+.section-products .single-product .part-1 ul {
+    position: absolute;
+    bottom: -41px;
+    left: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    transition: bottom 0.5s, opacity 0.5s;
+}
+
+.section-products .single-product:hover .part-1 ul {
+    bottom: 30px;
+    opacity: 1;
+}
+
+.section-products .single-product .part-1 ul li {
+    display: inline-block;
+    margin-right: 4px;
+}
+
+.section-products .single-product .part-1 ul li a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ffffff;
+    color: #444444;
+    text-align: center;
+    box-shadow: 0 2px 20px rgb(50 50 50 / 10%);
+    transition: color 0.2s;
+}
+
+.section-products .single-product .part-1 ul li a:hover {
+    color: #fe302f;
+}
+
+.section-products .single-product .part-2 .product-title {
+    font-size: 1rem;
+}
+
+.section-products .single-product .part-2 h4 {
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.section-products .single-product .part-2 .product-old-price {
+    position: relative;
+    padding: 0 7px;
+    margin-right: 2px;
+    opacity: 0.6;
+}
+
+.section-products .single-product .part-2 .product-old-price::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #444444;
+    transform: translateY(-50%);
+}
+/*TOP PRODUCTS CSS ENDS*/
