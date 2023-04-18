@@ -1,0 +1,78 @@
+.herosection{
+  margin-top: 12vh;
+  height: 600px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.herosection img{
+    height: 100%;
+    width: 100%;
+}
+
+
+
+  .mainfeatures{
+    display: flex;
+    padding: 10%;
+    height: auto;
+  }
+
+  .service{
+    width: 90%;
+    height: 650px;
+    /* background-image: url('../Media/servicebag.png');  */
+    /* background-size: cover; */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+
+
+    /* padding: 5%; */
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+   padding: 2%;
+    margin: 0px 20px;
+
+  }
+  .discp{
+    background-color: rgb(187 255 187);
+    padding: 20px;
+    height: 80%;
+    width: 100%;
+  }
+
+  .service img{
+    width: 80%;
+    height: 40%;
+    margin-bottom: 20px;
+    border-radius: 100%;
+  }
+
+  .discp a{
+    color:white;
+    text-decoration: none;
+  }
+  @media (max-width:1000px) {
+
+    .mainfeatures{
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .service{
+       width: 65%;
+       height: 550px;
+    }
+
+
+  }
+
+  @media (max-width:600px){
+    .service{
+      width:80% ;
+      height: 600px;
+    }
+  }

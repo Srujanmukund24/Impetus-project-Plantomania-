@@ -5,9 +5,16 @@ from .forms import UserRegisterForm
 from django.contrib import messages
 from django.contrib.auth import login,authenticate, logout
 # Create your views here.
-def home(request):
+from store.models import Product
 
-    return render(request, 'users/home.html')
+def home(request):
+    products = Product.objects.filter(category__name='top')
+    context = {
+        'products': products
+    }
+
+
+    return render(request, 'users/home.html',context)
 
 def login(request):
     return render(request,'users/login.html')

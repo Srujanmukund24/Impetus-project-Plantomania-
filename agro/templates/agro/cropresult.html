@@ -1,11 +1,76 @@
 {% load static %}
+<html lang="en">
 
-<div>Name-{{ans}}</div>
-<div>Description-{{ans1}}</div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantomania</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js">
+    <link rel="stylesheet" href="{% static 'agro/landingpage.css' %}">
+    <link rel="stylesheet" href="{% static 'agro/anspage.css' %}">
 
+    <link href="https://fonts.cdnfonts.com/css/droid-sans-mono-2" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Yatra+One' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rajdhani&display=swap" rel="stylesheet">
 
+</head>
 
-{% if ans == 'kidneybeans' %}
+<body>
+    <!-- Navigation Bar -->
+    <header>
+
+         <nav class="navbar fixed-top navbar-expand-lg navbar-light ">
+            <div class="container-fluid">
+                <img src="{% static 'brand.png' %}" class="Brand" alt="">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="{% url 'land' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'plantop' %}">Nursery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'options' %}">Agro</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About-Us</a>
+                        </li>
+                        {% if user.is_authenticated   %}
+            <li class="nav-item">
+              <button class="nav-link btn btn-success" ><a href="{% url 'logout' %}" class=" butn" >Logout</a> </button>
+            </li>
+             {% else %}
+            <li class="nav-item">
+              <button class="nav-link btn btn-success" ><a href="{% url 'login' %}" class=" butn" >Login/SignUp</a> </button>
+            </li>
+             {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    
+    <section class="predict-ans container ">
+        <div class="content">
+                <h3 class="ans-heading">
+                   {{ans}}
+                </h3>
+                <p class="ans-descp">
+                    {{ans1}}
+                </p>
+        </div>
+        <div class="ans-image">
+            {% if ans == 'kidneybeans' %}
   <img src="{% static 'kidneybeans.jpg' %}" class="Brand" alt="">
 {%  endif %}
 {% if ans == 'rice' %}
@@ -68,7 +133,15 @@
 {% if ans == 'coffee' %}
   <img src="{% static 'coffee.jpg' %}" class="Brand" alt="">
 {%  endif %}
+        </div>
+    </section>
 
 
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="/Javascript/nav.js"></script>
+</body>
 
-
+</html>

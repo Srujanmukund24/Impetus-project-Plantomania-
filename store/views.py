@@ -13,7 +13,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 def store(request):
     # categoryy = request.POST.get('plant_options')
-    products = Product.objects.filter(category__name=request.POST.get('plant_options'))
+    a=request.POST.get('plant_options')
+    print(a)
+    products = Product.objects.filter(category__name=a)
     context = {
         'products': products
     }

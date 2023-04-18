@@ -1,34 +1,168 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Plant Nutrition Form</title>
-  </head>
-  <body>
-    <h1>Plant Nutrition Form</h1>
-    <form action="{% url 'cropresult' %}">
-        {% csrf_token %}
-      <label for="temperature">Temperature:</label>
-      <input type="number" id="temperature" name="temperature" required><br><br>
+{% load static %}
+<html lang="en">
 
-      <label for="humidity">Humidity:</label>
-      <input type="number" id="humidity" name="humidity" required><br><br>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantomania</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js">
+    <link rel="stylesheet" href="{% static 'agro/landingpage.css' %}">
+    <link rel="stylesheet" href="{% static 'agro/crop.css' %}">
 
-      <label for="moisture">PH:</label>
-      <input type="number" id="PH" name="ph" required><br><br>
+    <link href="https://fonts.cdnfonts.com/css/droid-sans-mono-2" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Yatra+One' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rajdhani&display=swap" rel="stylesheet">
 
-      <label for="nitrogen">Nitrogen (N):</label>
-      <input type="number" id="nitrogen" name="N" required><br><br>
+</head>
 
-      <label for="phosphorus">Phosphorus (P):</label>
-      <input type="number" id="phosphorus" name="P" required><br><br>
+<body>
+    <!-- Navigation Bar -->
+    <header>
 
-      <label for="potassium">Potassium (K):</label>
-      <input type="number" id="potassium" name="K" required><br><br>
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light ">
+            <div class="container-fluid">
+                <img src="{% static 'brand.png' %}" class="Brand" alt="">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ">
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="{% url 'land' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'plantop' %}">Nursery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'options' %}">Agro</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About-Us</a>
+                        </li>
+                        {% if user.is_authenticated   %}
+            <li class="nav-item">
+              <button class="nav-link btn btn-success" ><a href="{% url 'logout' %}" class=" butn" >Logout</a> </button>
+            </li>
+             {% else %}
+            <li class="nav-item">
+              <button class="nav-link btn btn-success" ><a href="{% url 'login' %}" class=" butn" >Login/SignUp</a> </button>
+            </li>
+             {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
-       <label for="rainfall">Rainfall :</label>
-      <input type="rainfall" id="rainfall" name="rainfall" required><br><br>
 
-      <input type="submit" value="Submit">
-    </form>
-  </body>
+    <section class="main">
+        <section class="image-section">
+            <img src="{% static '2.png' %}" alt="">
+        </section>
+
+
+
+        <section class="form-container shadow-lg " data-aos="flip-left"  data-aos-duration="2000">
+            <div class="strip shadow-lg">
+                <div>
+                    <h2>CROP PREDICTION</h2>
+                </div>
+            </div>
+            <form class="form-structure " action="{% url 'cropresult' %}">
+               {% csrf_token %}
+                <div class="row">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" htmlFor="N">
+                                Nitrogen
+                            </label>
+                            <input type="number" id="Nitrogen" class="form-control" placeholder="'N'-Value" name="N"
+                                value={N} step={0.001} required />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" htmlFor="P">
+                                Phosporous
+                            </label>
+                            <input type="number" id="Phosporous" class="form-control" placeholder="'P'-Value" name="P"
+                                value={P} step={0.001} required />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" htmlFor="k">
+                                Potassium
+                            </label>
+                            <input type="number" id="Potassium" class="form-control" placeholder="'K'-Value" name="K"
+                                value={K} step={0.001} required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" htmlFor="Temp">
+                                Temprature
+                            </label>
+                            <input type="number" id="Nitrogen" class="form-control" placeholder="in Celsius"
+                                name="temperature" value={temperature} step={0.001} required />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" htmlFor="Humidity">
+                                Humidity
+                            </label>
+                            <input type="number" id="Potassium" class="form-control" placeholder=" % of Humidity "
+                                name="humidity" value={humidity} step={0.001} required />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" htmlFor="pH">
+                                pH-value
+                            </label>
+                            <input type="number" id="Phosporous" class="form-control" placeholder="ph-Value" name="ph"
+                                value={ph} step={0.001} required />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" htmlFor="Rain">
+                                Rainfall
+                            </label>
+                            <input type="number" id="Nitrogen" class="form-control" placeholder=" in Millimeter"
+                                name="rainfall" value={rainfall} step={0.001} required />
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success btn Predict " >
+                    <a >Predict</a>
+                </button>
+            </form>
+        </section>
+
+    </section>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="/Javascript/nav.js"></script>
+</body>
+
 </html>

@@ -1,12 +1,127 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Agro and Nursery Sections</title>
-  </head>
-  <body>
-    <h1>Welcome to our farm!</h1>
-    <p>Please select a section:</p>
-    <a href="{% url 'agrosection' %}"><button>Agro Section</button></a>
-    <a href="{% url 'fertform' %}"><button>Nursery Section</button></a>
-  </body>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plantomania</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js">
+  <link rel="stylesheet" href="{% static 'agro/landingpage.css' %}">
+  <link rel="stylesheet" href="{% static 'agro/agrohome.css' %}">
+
+  <link href="https://fonts.cdnfonts.com/css/droid-sans-mono-2" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Yatra+One' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rajdhani&display=swap" rel="stylesheet">
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <header>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light ">
+      <div class="container-fluid">
+        <img src="{% static 'brand.png' %}" class="Brand" alt="">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="{% url 'land' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'plantop' %}">Nursery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'options' %}">Agro</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About-Us</a>
+            </li>
+            {% if user.is_authenticated   %}
+            <li class="nav-item">
+              <button class="nav-link btn btn-success" ><a href="{% url 'logout' %}" class=" butn" >Logout</a> </button>
+            </li>
+             {% else %}
+            <li class="nav-item">
+              <button class="nav-link btn btn-success" ><a href="{% url 'login' %}" class=" butn" >Login/SignUp</a> </button>
+            </li>
+             {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+
+  <!-- <div class="">
+    <div class="quote-container">
+      <h1>Welcome to Agro Section Of the Website </h1>
+      <p>"Digital Agriculture "</p>
+    </div>
+  </div> -->
+  <section class="herosection">
+
+    <img src="{% static 'agrobanner.png' %}" alt="...">
+  </section>
+
+
+
+  <div class="mainfeatures d-flex">
+
+    <div class="service">
+      <img src="{% static '2.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
+      <div class="discp text-center shadow-lg " data-aos="flip-right"      data-aos-duration="500">
+        <h4>Crop Prediction</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque praesentium ipsum accusamus voluptas expedita,
+          nulla cumque possimus voluptates voluptatem consequuntur cum quod. Et, adipisci cum.</p>
+        <button class="btn btn-success">
+          <a href="{% url 'agrosection' %}">Explore</a>
+        </button>
+      </div>
+    </div>
+    <div class="service">
+      <img src="{% static '2.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
+      <div class="discp text-center shadow-lg"data-aos="flip-right"      data-aos-duration="500" >
+
+        <h4>Fertiliser Prediction</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque praesentium ipsum accusamus voluptas expedita,
+          nulla cumque possimus voluptates voluptatem consequuntur cum quod. Et, adipisci cum.</p>
+        <button class="btn btn-success">
+          <a href="{% url 'fertform' %}">Explore</a>
+        </button>
+      </div>
+    </div>
+    <div class="service">
+      <img src="{% static '2.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
+      <div class="discp text-center shadow-lg" data-aos="flip-right"      data-aos-duration="500">
+
+        <h4>Discese Detection</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque praesentium ipsum accusamus voluptas expedita,
+          nulla cumque possimus voluptates voluptatem consequuntur cum quod. Et, adipisci cum.</p>
+        <button class="btn btn-success">
+          <a href="{% url 'fertform' %}">Explore</a>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="/Javascript/nav.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
 </html>
