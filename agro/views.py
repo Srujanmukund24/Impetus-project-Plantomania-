@@ -6,7 +6,7 @@ from pathlib import Path
 from sklearn.tree import DecisionTreeRegressor
 import sys
 import sqlite3
-
+from store.models import Product
 # Create your views here.
 def options(request):
     return render(request,'agro/options.html')
@@ -39,8 +39,12 @@ def cropresult(request):
         data1.append(row[1])
     for row in rows:
         data2.append(row[2])
-
-    return render(request,'agro/cropresult.html',{'ans':data[0],'ans1':data1[0],'ans2':data2[0]})
+    print(output)
+    products = Product.objects.filter(name=name)
+    context={
+        'ans': data[0], 'ans1': data1[0], 'ans2': data2[0], 'products': products
+    }
+    return render(request,'agro/cropresult.html',context)
 def agrosection(request):
     return render(request,'agro/cropform.html')
 def fertilizer(request):
@@ -96,4 +100,9 @@ def fertresult(request):
     for row in rows:
         data2.append(row[2])
     print(output)
-    return render(request, 'agro/fertresult.html',{'ans':data[0],'ans1':data1[0],'ans2':data2[0]})
+    products = Product.objects.filter(name=name)
+    context = {
+        'ans': data[0], 'ans1': data1[0], 'ans2': data2[0], 'products': products
+    }
+
+    return render(request, 'agro/fertresult.html',context)

@@ -107,21 +107,36 @@
   <h1 class="button-heading">SHOP NOW </h1>
   <div class="nursery_buttons" >
     <div class="flowering" data-aos="flip-left"      data-aos-duration="500">
-
-     <button><a href="{% url 'store' %}"><img src="{% static 'nursery_1.png' %}" alt="hanging" name="plant_options"></a></button>
-
-
-
+        <form method="POST" action="{% url 'store' %}">
+  {% csrf_token %}
+  <input type="hidden" name="button_value" value="flowering">
+  <button type="submit"><img src="{% static 'nursery_1.png' %}" alt="hanging" name="Flowering" value="plant"></button>
+  </form>
 
     </div>
     <div class="hanging" data-aos="flip-left"     data-aos-duration="500">
-        <button><a href="allproducts.html"><img src="{% static 'nursery_2.png' %}" alt="hanging" name="plant_options " value="plant_options"></a></button>
+        <form method="POST" action="{% url 'store' %}">
+  {% csrf_token %}
+  <input type="hidden" name="button_value" value="hanging">
+  <button type="submit"><img src="{% static 'nursery_2.png' %}" alt="hanging" name="Hanging" value="plant"></button>
+  </form>
+
     </div>
     <div class="ornamental" data-aos="flip-left"      data-aos-duration="500">
-        <button><a href="allproducts.html"><img src="{% static 'nursery_4.png' %}" alt="ornamental" name="plant_options"></a></button>
+        <form method="POST" action="{% url 'store' %}">
+  {% csrf_token %}
+  <input type="hidden" name="button_value" value="ornamental">
+  <button type="submit"><img src="{% static 'nursery_3.png' %}" alt="hanging" name="Ornamental" value="plant"></button>
+  </form>
+
     </div>
     <div class="bonsai" data-aos="flip-left"      data-aos-duration="500">
-        <button><a href="allproducts.html"><img src="{% static 'nursery_3.png' %}" alt="bonsai" name="plant_options"></a></button>
+        <form method="POST" action="{% url 'store' %}">
+  {% csrf_token %}
+  <input type="hidden" name="button_value" value="bonsai">
+  <button type="submit"><img src="{% static 'nursery_4.png' %}" alt="hanging" name="Bonsai"></button>
+  </form>
+
     </div>
   </div>
   <!--TOP PRODUCTS SECTION-->

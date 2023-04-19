@@ -13,12 +13,17 @@ from django.views.decorators.csrf import csrf_exempt
 
 def store(request):
     # categoryy = request.POST.get('plant_options')
-    a=request.POST.get('plant_options')
-    print(a)
-    products = Product.objects.filter(category__name=a)
+    button_value = request.POST.get('button_value')
+    print(button_value)
+
+    # Filter the products by the category name
+    products = Product.objects.filter(category__name=button_value)
+
     context = {
-        'products': products
+        'products': products,
+        'button_value': button_value,
     }
+
     return render(request, 'store/store.html', context)
 
 def add_to_cart(request, product_id):
@@ -35,11 +40,15 @@ def add_to_cart(request, product_id):
         CartItem.objects.create(product=product)
         messages.success(request, f'{product.name} added to cart')
     products = Product.objects.all()
+    cart_items = CartItem.objects.filter(user=request.user)
+    total_price = sum([item.product.price * item.quantity for item in cart_items])
     context = {
-        'products': products
+        'cart_items': cart_items,
+        'total_price': total_price,
     }
 
-    return render(request, 'store/store.html', context)
+
+    return render(request, 'store/cart.html', context)
 def cart(request):
 
     cart_items = CartItem.objects.filter(user=request.user)
@@ -146,6 +155,16 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     return render(request, 'store/product_detail.html', {'product': product})
 
+def remove_from_cart(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        try:
+            item = CartItem.objects.get(user=request.user, product__id=product_id)
+            item.delete()
+            messages.success(request, "Product removed from cart.")
+        except CartItem.DoesNotExist:
+            messages.error(request, "Product not found in cart.")
+    return redirect('cart')
 
 
 
