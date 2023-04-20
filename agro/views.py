@@ -7,6 +7,12 @@ from sklearn.tree import DecisionTreeRegressor
 import sys
 import sqlite3
 from store.models import Product
+import tensorflow as tf
+import numpy as np
+from django.shortcuts import render
+from django.http import HttpResponse
+import h5py as h5
+
 # Create your views here.
 def options(request):
     return render(request,'agro/options.html')
@@ -106,3 +112,30 @@ def fertresult(request):
     }
 
     return render(request, 'agro/fertresult.html',context)
+
+
+def predictd(request):
+    data = 'plant_disease.ipynb'
+    f = h5.File(data, 'r')
+    model_path = 'plant_disease.ipynb'  # Path to your TensorFlow model
+    model = tf.keras.models.load_model(model_path)
+
+    if request.method == 'POST':
+        image_file = request.FILES['image']
+        image_bytes = image_file.read()
+        image = tf.image.decode_jpeg(image_bytes, channels=3)
+        image = tf.image.resize(image, [224, 224])
+        image = tf.expand_dims(image, axis=0)
+        image = image / 255.0
+
+        prediction = model.predict(image)
+        prediction = np.argmax(prediction)
+
+        if prediction == 0:
+            prediction_text = "Healthy Plant"
+        else:
+            prediction_text = "Diseased Plant"
+
+        return HttpResponse(prediction_text)
+
+    return render(request, 'predict.html')

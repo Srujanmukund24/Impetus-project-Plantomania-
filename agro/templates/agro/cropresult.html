@@ -45,6 +45,9 @@
                             <a class="nav-link" href="#">About-Us</a>
                         </li>
                         {% if user.is_authenticated   %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'cart' %}">Cart</a>
+                        </li>
             <li class="nav-item">
               <button class="nav-link btn btn-success" ><a href="{% url 'logout' %}" class=" butn" >Logout</a> </button>
             </li>

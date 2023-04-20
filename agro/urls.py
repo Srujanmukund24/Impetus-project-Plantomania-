@@ -6,6 +6,7 @@ urlpatterns = [
     path('cropresult/', views.cropresult, name="cropresult"),
     path('fertform/', views.fertilizer, name="fertform"),
     path('fertresult/', views.fertresult, name="fertresult"),
+path('predictd/', views.predictd, name="predictd"),
 
 
 ]

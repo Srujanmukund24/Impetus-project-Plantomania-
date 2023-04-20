@@ -1,49 +1,183 @@
+{% load static %}
+<html lang="en">
 
-  <h1>Your Cart</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantomania</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js">
+    <link rel="stylesheet" href="{% static 'store/landingpage.css' %}">
 
-  {% if cart_items %}
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Product Name</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in cart_items %}
-          <tr>
-            <td>{{ item.product.name }}</td>
-            <td>
-              <form method="POST" action="{% url 'update_cart' %}">
-  {% csrf_token %}
-  <input type="hidden" name="product_id" value="{{ item.product.id }}">
-  <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="{{ item.product.stock }}" required>
-  <button type="submit">Update</button>
-</form>
 
-            </td>
-            <td>{{ item.product.price }}</td>
+    <link href="https://fonts.cdnfonts.com/css/droid-sans-mono-2" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Yatra+One' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rajdhani&display=swap" rel="stylesheet">
+<style>
+    .trash{
+        transition: all 2s ease-in-out;
 
-             <td>{{ item.product.price}}*{{item.quantity }}
-</td>
-               <td>
-        <form method="POST" action="{% url 'remove_from_cart' %}">
-          {% csrf_token %}
-          <input type="hidden" name="product_id" value="{{ item.product.id }}">
-          <button type="submit">Remove</button>
-        </form>
-      </td>
-          </tr>
-        {% endfor %}
-        <tr>
-          <td colspan="3" align="right"><strong>Total:</strong></td>
-          <td>{{ total_price }}</td>
-        </tr>
-      </tbody>
-    </table>
-  <a class="nav-link" href="{% url 'checkout' %}">checkout</a>
-  {% else %}
-    <p>Your cart is empty.</p>
-  {% endif %}
+    }
+    .trash :hover{
+        transform: scale(1.3,1.3);
+        cursor: pointer;
+    }
+
+
+</style>
+</head>
+
+
+<body>
+    <!-- Navigation Bar -->
+    <header>
+
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light ">
+      <div class="container-fluid">
+        <img src="{% static 'brand.png' %}" class="Brand" alt="">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="{% url 'land' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'plantop' %}">Nursery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'options' %}">Agro</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About-Us</a>
+            </li>
+            {% if user.is_authenticated   %}
+            <li class="nav-item">
+                            <a class="nav-link" href="{% url 'cart' %}">Cart</a>
+                        </li>
+            <li class="nav-item">
+              <button class="nav-link btn btn-success" ><a href="{% url 'logout' %}" class=" butn" >Logout</a> </button>
+            </li>
+             {% else %}
+            <li class="nav-item">
+              <button class="nav-link btn btn-success" ><a href="{% url 'login' %}" class=" butn" >Login/SignUp</a> </button>
+            </li>
+             {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </header>
+
+
+    <!--  -->
+
+    <section class=" shadow text-center h-auto" style="margin-top: 20vh;">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <p><span class="h2">Shopping Cart </span>
+
+                    <div class="card mb-4">
+                        
+                        <!-- loop starts here ... -->
+                    {% for item in cart_items %}
+                        <div class="card-body p-4">
+
+                            <div class="row align-items-center  justify-content-center shadow p-2">
+                                <div class="col-md-2 align-items-center">
+                                    <img src="{{ item.product.image.url }}" style="height: 100px;width: 100px;"
+                                        class="img-fluid" alt="Generic placeholder image">
+                                </div>
+                                <div class="col-md-2 d-flex justify-content-center  mx-3">
+                                    <div>
+                                        <p class="small text-muted mb-4 pb-2">Name</p>
+                                        <p class="lead fw-normal mb-0">{{ item.product.name }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 d-flex justify-content-center mx-3">
+                                    <div>
+                                        <p class="small text-muted mb-4 pb-2">{{item.quantity }}</p>
+                                        <form method="POST" action="{% url 'update_cart' %}" class="conatiner d-flex ">
+                                            <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                                            <input type="number" id="form1" name="quantity" value="{{ item.quantity }}"
+                                                min="1" max="{{ item.product.stock }}" required>
+                                            <button type="submit" class="btn btn-outline-dark ml-2 sm">Update</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-2 d-flex justify-content-center  mx-3 ">
+                                    <div>
+                                        <p class="small text-muted mb-4 pb-2">Price</p>
+                                        <p class="lead fw-normal mb-0"> Rs.{{ item.product.price}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 d-flex justify-content-center mx-3">
+                                    <div>
+
+                                        <form method="POST" action="{% url 'remove_from_cart' %}"
+
+                                            class="conatiner d-flex ">
+                                             {% csrf_token %}
+                                            <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                                            <button  class="trash "type="submit"><ion-icon name="trash-outline"
+                                                    size="large"></ion-icon></button>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                       {% endfor %}
+
+
+
+                        <!-- loop ends here..  -->
+                        
+
+
+                        <div class="card mb-5 shadow">
+                            <div class="card-body p-4">
+
+                                <div class="float-end">
+                                    <p class="mb-0 me-5 d-flex align-items-center">
+                                        <span class="large me-2"><strong>Order total:</strong></span> <span
+                                            class="lead fw-normal"><em>{{ total_price }}</em></span>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="d-flex justify-content-end mb-5">
+                        <button type="submit" class="btn btn-outline-success me-2"><a href="{% url 'plantop' %}">Continue Shopping</a></button>
+                        <button type="submit" class="btn btn-success btn-lg"><a href="{% url 'checkout' %}">Checkout</a> </button>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="/Javascript/nav.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

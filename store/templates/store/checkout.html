@@ -1,82 +1,176 @@
+{% load static %}
+<html lang="en">
 
-    <div class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantomania</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js">
+ <link rel="stylesheet" href="{% static 'store/landingpage.css' %}">
+  <link rel="stylesheet" href="{% static 'store/allproducts.css' %}">
+
+    <link href="https://fonts.cdnfonts.com/css/droid-sans-mono-2" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Yatra+One' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rajdhani&display=swap" rel="stylesheet">
+<style>
+   .cart{
+    transition: all 0.3s ease-in-out;
+
+   }
+   .cart:hover{
+    transform: scale(0.9,0.9);
+    cursor: pointer;
+   }
+
+
+
+
+</style>
+</head>
+
+
+<body>
+    <!-- Navigation Bar -->
+    <header>
+
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light ">
+      <div class="container-fluid">
+        <img src="{% static 'brand.png' %}" class="Brand" alt="">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="{% url 'land' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'plantop' %}">Nursery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'options' %}">Agro</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About-Us</a>
+            </li>
+            {% if user.is_authenticated   %}
+            <li class="nav-item">
+                            <a class="nav-link" href="{% url 'cart' %}">Cart</a>
+                        </li>
+            <li class="nav-item">
+              <button class="nav-link btn btn-success" ><a href="{% url 'logout' %}" class=" butn" >Logout</a> </button>
+            </li>
+             {% else %}
+            <li class="nav-item">
+              <button class="nav-link btn btn-success" ><a href="{% url 'login' %}" class=" butn" >Login/SignUp</a> </button>
+            </li>
+             {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </header>
+    <section>
+    <div class="container " style="margin-top: 20vh;">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <h2>Checkout</h2>
-                <hr>
-                <h4>Billing Information</h4>
-                <form method="POST" action="{% url 'createp' %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" class="form-control" id="city" name="city" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="state">State</label>
-                        <input type="text" class="form-control" id="state" name="state" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="zip">Zip Code</label>
-                        <input type="text" class="form-control" id="zip" name="zip" required>
-                    </div>
+            <div class="col-md-4 order-md-2 mb-4">
+                <h4 class="d-flex justify-content-center align-items-center mb-3">
+                    <span class="lead text-center"><strong >Your Order Summary! </strong></span>
 
-                     </form>
-                    <h4>Order Summary</h4>
-                    {% for item in cart_items %}
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="{{ item.product.image.url }}" class="img-fluid">
-                            </div>
-                            <div class="col-md-8">
-                                <h5>{{ item.product.name }}</h5>
-                                <p>Quantity: {{ item.quantity }}</p>
-                                <p>Price: ${{ item.product.price }}</p>
-                            </div>
+                </h4>
+                <ul class="list-group mb-3 sticky-top shadow cart">
+                    <!-- loop start -->
+                     {% for item in cart_items %}
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <h6 class="my-0">{{ item.product.name }}</h6>
+
                         </div>
-                        <hr>
-                    {% endfor %}
-                    <h5>Total Price: ${{ total_price }}</h5>
-                  <form class="text-center border border-light p-5" action="success" method="POST">
+                        <img src="{{ item.product.image.url }}" style="height: 100px;width: 100px;"
+                                        class="img-fluid" alt="Generic placeholder image">
+                    </li>
 
-                          {% csrf_token %}
+                   <!-- loop ends -->
+                     {% endfor %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (INR)</span>
+                        <strong>{{ total_price }}</strong>
+                    </li>
+                </ul>
+                
+            </div>
+            <div class="col-md-8 order-md-1 shadow " style="height:75vh;padding:3%">
+                <h4 class="mb-3 display-5 fw-bolder">Billing Details </h4>
+                <form class="needs-validation " novalidate="" action="sucess">
+                    {% csrf_token %}
+                    <div class="row lead">
+                        <div class="col-md-6 mb-3">
+                            
+                            <input type="text" class="form-control" id="firstName" placeholder="First name" value="" required="">
+                            <div class="invalid-feedback"> Valid first name is required. </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" id="lastName" placeholder="Last name" value="" required="">
+                            <div class="invalid-feedback"> Valid last name is required. </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="email" placeholder="Enter Email : you@example.com">
+                        <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="address" placeholder="Enter your Address" required="">
+                        <div class="invalid-feedback"> Please enter your shipping address. </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="address2" placeholder="Mobile Number ">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <input type="text" class="form-control" id="state" placeholder="State " name="state">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <input type="text" class="form-control" id="state" placeholder="City" name="city">
 
+                        </div>
+                    </div>
+                    
+                    <hr class="mb-4 mx-auto " style="width:90%">
 
-
-
-<!-- RAZORPAY INTEGRATION HERE -->
-
-<script src="https://checkout.razorpay.com/v1/checkout.js"
+                    <script class="hidden" src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="rzp_test_xdK2Xh5HZzMR5n"
     data-amount="{{ total_price1 }}"
     data-currency="INR"
     data-order_id="{{payment.id}}"
-    data-buttontext= "Pay with Razorpay"
+    data-buttontext= "Pay and Place Order"
     data-name="Plantomania"
     data-description=" Plant Website"
     data-image="https://example.com/your_logo.jpg"
     data-prefill.name="Mcgill"
     data-prefill.email="Mcgill45@gmail.com"
-    data-theme.color="#F37254">
+    data-theme.color="#053907">
 </script>
-</form>
-</div>
-</div>
-
-
+                </form>
             </div>
         </div>
+        
     </div>
+</section>
+   
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="/Javascript/nav.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+</body>
 
+</html>

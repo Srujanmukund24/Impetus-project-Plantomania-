@@ -46,6 +46,9 @@
             </li>
             {% if user.is_authenticated   %}
             <li class="nav-item">
+                            <a class="nav-link" href="{% url 'cart' %}">Cart</a>
+                        </li>
+            <li class="nav-item">
               <button class="nav-link btn btn-success" ><a href="{% url 'logout' %}" class=" butn" >Logout</a> </button>
             </li>
              {% else %}
@@ -77,7 +80,7 @@
   <div class="mainfeatures d-flex">
 
     <div class="service">
-      <img src="{% static '2.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
+      <img src="{% static 'croppredd.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
       <div class="discp text-center shadow-lg " data-aos="flip-right"      data-aos-duration="500">
         <h4>Crop Prediction</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque praesentium ipsum accusamus voluptas expedita,
@@ -88,7 +91,7 @@
       </div>
     </div>
     <div class="service">
-      <img src="{% static '2.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
+      <img src="{% static '7.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
       <div class="discp text-center shadow-lg"data-aos="flip-right"      data-aos-duration="500" >
 
         <h4>Fertiliser Prediction</h4>
@@ -100,14 +103,14 @@
       </div>
     </div>
     <div class="service">
-      <img src="{% static '2.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
+      <img src="{% static '8.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
       <div class="discp text-center shadow-lg" data-aos="flip-right"      data-aos-duration="500">
 
         <h4>Discese Detection</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque praesentium ipsum accusamus voluptas expedita,
           nulla cumque possimus voluptates voluptatem consequuntur cum quod. Et, adipisci cum.</p>
         <button class="btn btn-success">
-          <a href="{% url 'fertform' %}">Explore</a>
+          <a href="{% url 'predictd' %}">Explore</a>
         </button>
       </div>
     </div>

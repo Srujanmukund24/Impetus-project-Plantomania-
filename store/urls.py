@@ -8,7 +8,7 @@ urlpatterns = [
     path('plantoptions/', views.plantop, name='plantop'),
     path('checkout/', views.checkout, name='checkout'),
     path('createp/', views.create_payment, name='createp'),
-    path('checkout/success', views.sucess, name='sucess'),
+    path('checkout/sucess', views.sucess, name='sucess'),
     path('product/<int:product_id>/', views.product_detail, name='product_detail'),
     path('remove_from_cart/', views.remove_from_cart, name='remove_from_cart'),
 

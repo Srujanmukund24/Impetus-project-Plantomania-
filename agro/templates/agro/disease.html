@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plant Disease Detection</title>
+</head>
+<body>
+    <h1>Plant Disease Detection</h1>
+    <form method="POST" action="{% url 'predictd' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="image">Upload an image:</label><br>
+        <input type="file" name="image" accept="image/*"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+    <br><br>
+    {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+    {% endif %}
+</body>
+</html>
