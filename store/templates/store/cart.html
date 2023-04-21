@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js">
     <link rel="stylesheet" href="{% static 'store/landingpage.css' %}">
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.cdnfonts.com/css/droid-sans-mono-2" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Yatra+One' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rajdhani&display=swap" rel="stylesheet">
@@ -76,9 +77,9 @@
 
     <!--  -->
 
-    <section class=" shadow text-center h-auto" style="margin-top: 20vh;">
-        <div class="container h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
+    <section class=" shadow text-center" style="margin-top: 20vh;">
+        <div class="container ">
+            <div class="row d-flex justify-content-center align-items-center ">
                 <div class="col">
                     <p><span class="h2">Shopping Cart </span>
 
@@ -101,8 +102,9 @@
                                 </div>
                                 <div class="col-md-2 d-flex justify-content-center mx-3">
                                     <div>
-                                        <p class="small text-muted mb-4 pb-2">{{item.quantity }}</p>
+                                        <p class="small text-muted mb-4 pb-2"> Quantity</p>
                                         <form method="POST" action="{% url 'update_cart' %}" class="conatiner d-flex ">
+                                            {% csrf_token %}
                                             <input type="hidden" name="product_id" value="{{ item.product.id }}">
                                             <input type="number" id="form1" name="quantity" value="{{ item.quantity }}"
                                                 min="1" max="{{ item.product.stock }}" required>
@@ -140,6 +142,8 @@
 
                             </div>
                         </div>
+                    {% empty %}
+                   <p class="fw-bolder text-center">Your Cart is Emptyy,Shop to Proceed further!</p>
                        {% endfor %}
 
 
@@ -162,15 +166,111 @@
                         </div>
 
                     </div>
+
                     <div class="d-flex justify-content-end mb-5">
-                        <button type="submit" class="btn btn-outline-success me-2"><a href="{% url 'plantop' %}">Continue Shopping</a></button>
-                        <button type="submit" class="btn btn-success btn-lg"><a href="{% url 'checkout' %}">Checkout</a> </button>
+                        <button type="submit" class="btn btn-success me-2"><a style="text-decoration:none;color:white;" href="{% url 'plantop' %}">Continue Shopping</a></button>
+                        <button type="submit" class="btn btn-success btn-lg"><a style="text-decoration:none;color:white;" href="{% url 'checkout' %}">Checkout</a> </button>
                     </div>
                 </div>
             </div>
     </section>
 
 
+    <!-- Footer -->
+  <footer class="text-center text-lg-start bg-white text-muted" >
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span>LET US DIGITALIZE AGRO AND NURSERY SECTOR</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-google"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3 text-secondary"></i>Plantomania
+            </h6>
+            <p>
+             Plantomania is a revolutionary website , that completely digitalizes agro and nursery sector and empowers India.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Useful links
+            </h6>
+            <p>
+              <a href="home.html" class="text-reset">Home</a>
+            </p>
+            <p>
+              <a href="#first" class="text-reset">Agro</a>
+            </p>
+            <p>
+              <a href="#first" class="text-reset">Nursery</a>
+            </p>
+            <p>
+              <a href="#second" class="text-reset">About</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fa fa-home me-3 text-secondary"></i> Pict , Pune - 411037</p>
+            <p>
+              <i class="fa fa-envelope me-3 text-secondary"></i>
+              Plantomania@gmail.com
+            </p>
+            <p><i class="fa fa-phone me-3 text-secondary"></i> + 82370-95572</p>
+            <p><i class="fa fa-print me-3 text-secondary"></i> + 82370-95572 </p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+  </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>

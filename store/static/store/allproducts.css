@@ -38,8 +38,9 @@
 
 .card img{
     transition: all 0.3s ease-in-out;
-    height:200px;
+    height:240px;
     width:100%;
+
 }
 
 .card img:hover{

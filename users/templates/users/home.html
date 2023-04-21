@@ -15,6 +15,8 @@
   <link href='https://fonts.googleapis.com/css?family=Yatra+One' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rajdhani&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -41,7 +43,7 @@
               <a class="nav-link" href="{% url 'options' %}">Agro</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About-Us</a>
+              <a class="nav-link" href="{% url 'team' %}">About-Us</a>
             </li>
             {% if user.is_authenticated   %}
               <li class="nav-item">
@@ -78,7 +80,7 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img src="{% static 'silder_1.png' %}" class="w-100 h-100" alt="...">
+          <img src="{% static 'slider33.png' %}" class="w-100 h-100" alt="...">
 
         </div>
 
@@ -87,7 +89,7 @@
 
         </div>
         <div class="carousel-item">
-          <img src="{% static 'slider33.png' %}" class="w-100 h-100" alt="...">
+          <img src="{% static 'silder_1.png' %}" class="w-100 h-100" alt="...">
 
         </div>
       </div>
@@ -115,14 +117,14 @@
 
       <div class="content">
         <div class="nursury-image content-img">
-          <img src="{% static 'nur.png' %}" data-aos="flip-left"      data-aos-duration="500">
+          <img src="{% static 'nur.png' %}" data-aos="flip-left"      data-aos-duration="1000">
         </div>
 
         <div class="nursury-descp content-descp">
-          <div class="title nursury-title">
+          <div class="title nursury-title  fw-bolder display-5">
             <h3>NURSURY-SECTION</h3>
         </div>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus alias modi laboriosam? Molestias veniam quos quae quam quo quod vitae expedita. Consequuntur provident soluta sin t.  Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum sunt non voluptatum iusto facere. Quasi laborum libero facilis voluptas ab?</p>
+          <p class="lead">Digitalization is taking all over the world. Still Nursery sector is working on orthodox methods. Plantomania digitalizes the ever growing nursery sector fulfilling horticulturists needs and making home gardening an easy task. Explore amazing deal with us now !</p>
           <button class="btn btn-success">
              <a href="{% url 'plantop' %}">Show</a>
       </button>
@@ -141,13 +143,13 @@
           <div class="title">
             <h3>AGRO-SECTION</h3>
           </div>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus tenetur eaque obcaecati cumque dicta, fuga aperiam accusantium unde recusandae natus! Possimus alias modi laboriosam? Molestias veniam quos quae quam quo quod vitae expedita. Consequuntur provident soluta sint.</p>
+          <p class="lead">After green revolution, Plantomania brings in a huge wave of digitilisation in agriculture sector. Through agro section of our website, farmer's can get crop and fertilizer recommendation which results in good yield. Seeds will be directly delivered at farmer's home which are quality tested. Explore this amazing section now!</p>
           <button class="btn btn-success">
             <a href="{% url 'options' %}">Show</a>
           </button>
         </div>
         <div class="agro-image content-img">
-          <img src="{% static 'agro.png' %}" data-aos="flip-left"      data-aos-duration="500">
+          <img src="{% static 'agro.png' %}" data-aos="flip-left"      data-aos-duration="1000">
 
         </div>
 
@@ -176,17 +178,17 @@
             <!-- Single Product -->
             <div class="col-md-6 col-lg-4 col-xl-3">
                 <div id="product-1" class="single-product">
-                    <div class="part-1 " style=" background: url({{ product.image.url }}) center center" >
-                        <ul>
-                            <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
-                            <li><a href="#"><i class="fas fa-expand"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="part-2">
-                        <h3 class="product-title">{{ product.name }}</h3>
-                        <h4 class="product-new-price">{{ product.price }}</h4>
+                    <img  src="{{ product.image.url }}" data-aos="fade-in-out"      data-aos-duration="2000" >
 
-                    </div>
+                         <h5 class="product-title">{{ product.name }}</h5>
+                        <h6 class="product-new-price"> ₹ {{ product.price }} /-</h6>
+                         <button type="submit" class="btn btn-success "> <a  style="text-decoration:none; color:white;" href="{% url 'product_detail' product.id %}" >View Product <ion-icon name="eye-outline"  class="mt-1"size="medium"></ion-icon></i></a></button>
+
+                    </img>
+<!--                    <div class="part-2">-->
+<!--                       -->
+
+<!--                    </div>-->
                 </div>
             </div>
             <!-- loop ends here  -->
@@ -199,6 +201,102 @@
 </div>
 <!--TOP PRODUCTS END-->
 <!--TOP PRODUCTS END-->
+<!-- Footer -->
+  <footer class="text-center text-lg-start bg-white text-muted" >
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span>LET US DIGITALIZE AGRO AND NURSERY SECTOR</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-google"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3 text-secondary"></i>Plantomania
+            </h6>
+            <p>
+             Plantomania is a revolutionary website , that completely digitalizes agro and nursery sector and empowers India.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Useful links
+            </h6>
+            <p>
+              <a href="home.html" class="text-reset">Home</a>
+            </p>
+            <p>
+              <a href="#first" class="text-reset">Agro</a>
+            </p>
+            <p>
+              <a href="#first" class="text-reset">Nursery</a>
+            </p>
+            <p>
+              <a href="#second" class="text-reset">About</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fa fa-home me-3 text-secondary"></i> Pict , Pune - 411037</p>
+            <p>
+              <i class="fa fa-envelope me-3 text-secondary"></i>
+              Plantomania@gmail.com
+            </p>
+            <p><i class="fa fa-phone me-3 text-secondary"></i> + 82370-95572</p>
+            <p><i class="fa fa-print me-3 text-secondary"></i> + 82370-95572 </p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+  </footer>
+
 
 
 
@@ -210,6 +308,9 @@
 <script>
   AOS.init();
 </script>
+ <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </body>
 
 </html>

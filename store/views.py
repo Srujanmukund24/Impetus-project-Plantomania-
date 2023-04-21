@@ -10,6 +10,8 @@ from django.conf import settings
 import razorpay
 stripe.api_key = settings.STRIPE_SECRET_KEY
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, get_object_or_404
+from .models import Product,CartItem
 
 def store(request):
     # categoryy = request.POST.get('plant_options')
@@ -74,7 +76,12 @@ def update_cart(request):
         cart_item.save()
     return redirect('cart')
 def plantop(request):
-    return render(request, 'store/plantop.html')
+    products = Product.objects.filter(category__name='top1')
+    context = {
+        'products': products
+    }
+
+    return render(request, 'store/plantop.html',context)
 
 def checkout(request):
 
@@ -144,11 +151,12 @@ def create_payment(request):
         return render(request, 'store/checkout.html')
 @csrf_exempt
 def sucess(request):
+    user = request.user
+    CartItem.objects.filter(user=user).delete()
     return render(request, 'store/sucess.html')
 
 
-from django.shortcuts import render, get_object_or_404
-from .models import Product
+
 
 
 def product_detail(request, product_id):

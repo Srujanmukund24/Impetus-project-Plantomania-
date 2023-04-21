@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js">
  <link rel="stylesheet" href="{% static 'store/landingpage.css' %}">
   <link rel="stylesheet" href="{% static 'store/allproducts.css' %}">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.cdnfonts.com/css/droid-sans-mono-2" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Yatra+One' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rajdhani&display=swap" rel="stylesheet">
+     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <style>
    .cart{
     transition: all 0.3s ease-in-out;
@@ -82,12 +84,14 @@
                     <span class="lead text-center"><strong >Your Order Summary! </strong></span>
 
                 </h4>
-                <ul class="list-group mb-3 sticky-top shadow cart">
+                <ul class="list-group mb-3 sticky-top shadow cart" data-aos="fade-right"      data-aos-duration="2000">
                     <!-- loop start -->
                      {% for item in cart_items %}
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div>
-                            <h6 class="my-0">{{ item.product.name }}</h6>
+                            <h5 class="my-0"><em>{{ item.product.name }}</em></h5>
+                            <h6 class="my-0">Price: ₹ {{item.product.price}} /- </h6>
+                            <h6 class="my-0">Quantity:{{item.quantity}}</h6>
 
                         </div>
                         <img src="{{ item.product.image.url }}" style="height: 100px;width: 100px;"
@@ -98,7 +102,7 @@
                      {% endfor %}
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (INR)</span>
-                        <strong>{{ total_price }}</strong>
+                        <strong> ₹ {{ total_price }}/-</strong>
                     </li>
                 </ul>
                 
@@ -161,7 +165,104 @@
         
     </div>
 </section>
-   
+
+
+
+    <!-- Footer -->
+  <footer class="text-center text-lg-start bg-white text-muted" >
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span>LET US DIGITALIZE AGRO AND NURSERY SECTOR</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-google"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3 text-secondary"></i>Plantomania
+            </h6>
+            <p>
+             Plantomania is a revolutionary website , that completely digitalizes agro and nursery sector and empowers India.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Useful links
+            </h6>
+            <p>
+              <a href="home.html" class="text-reset">Home</a>
+            </p>
+            <p>
+              <a href="#first" class="text-reset">Agro</a>
+            </p>
+            <p>
+              <a href="#first" class="text-reset">Nursery</a>
+            </p>
+            <p>
+              <a href="#second" class="text-reset">About</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fa fa-home me-3 text-secondary"></i> Pict , Pune - 411037</p>
+            <p>
+              <i class="fa fa-envelope me-3 text-secondary"></i>
+              Plantomania@gmail.com
+            </p>
+            <p><i class="fa fa-phone me-3 text-secondary"></i> + 82370-95572</p>
+            <p><i class="fa fa-print me-3 text-secondary"></i> + 82370-95572 </p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+  </footer>
     
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -170,7 +271,10 @@
     <script src="/Javascript/nav.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 </body>
 
 </html>

@@ -32,3 +32,5 @@ def register(request):
 
         return render(request, 'users/register.html', {'form': form})
 
+def team(request):
+    return render(request, 'users/team.html')

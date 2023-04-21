@@ -15,7 +15,8 @@
   <link href="https://fonts.cdnfonts.com/css/droid-sans-mono-2" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Yatra+One' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Rajdhani&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
@@ -82,9 +83,12 @@
     <div class="service">
       <img src="{% static 'croppredd.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
       <div class="discp text-center shadow-lg " data-aos="flip-right"      data-aos-duration="500">
-        <h4>Crop Prediction</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque praesentium ipsum accusamus voluptas expedita,
-          nulla cumque possimus voluptates voluptatem consequuntur cum quod. Et, adipisci cum.</p>
+        <h4>Crop Recommendation</h4>
+        <p>Crop Recommendation is an ML based model that recommends the suitable crop according to your soil and climatic conditions which in turn increases
+          farmer's yield that indeed profits the farmer.
+        </p>
+
+
         <button class="btn btn-success">
           <a href="{% url 'agrosection' %}">Explore</a>
         </button>
@@ -94,9 +98,10 @@
       <img src="{% static '7.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
       <div class="discp text-center shadow-lg"data-aos="flip-right"      data-aos-duration="500" >
 
-        <h4>Fertiliser Prediction</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque praesentium ipsum accusamus voluptas expedita,
-          nulla cumque possimus voluptates voluptatem consequuntur cum quod. Et, adipisci cum.</p>
+        <h4>Fertilizer <br> Prediction</h4>
+        <p>Every crop needs appropriate fertilizers for its proper nourishment and excellent yield. This section can
+          help you getting good yield by suggesting appropriate fertilizers based upon soil and climatic conditions.
+        </p>
         <button class="btn btn-success">
           <a href="{% url 'fertform' %}">Explore</a>
         </button>
@@ -106,15 +111,113 @@
       <img src="{% static '8.png' %}" alt="" data-aos="fade-in-out"      data-aos-duration="2000">
       <div class="discp text-center shadow-lg" data-aos="flip-right"      data-aos-duration="500">
 
-        <h4>Discese Detection</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque praesentium ipsum accusamus voluptas expedita,
-          nulla cumque possimus voluptates voluptatem consequuntur cum quod. Et, adipisci cum.</p>
+        <h4>Disease <br> Detection</h4>
+        <p>Plant diseases can cause an impactful loss in farmer's yield making it a concern to look for. Disease detection
+          model helps you identify crop diseases at early stage reducing farmer losses by increasing his yield.
+        </p>
+
         <button class="btn btn-success">
-          <a href="{% url 'predictd' %}">Explore</a>
+          <a href="{% url 'disease' %}">Explore</a>
         </button>
       </div>
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-white text-muted" >
+    <!-- Section: Social media -->
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span>LET US DIGITALIZE AGRO AND NURSERY SECTOR</span>
+      </div>
+      <!-- Left -->
+
+      <!-- Right -->
+      <div>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-google"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 link-secondary">
+          <i class="fa fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3 text-secondary"></i>Plantomania
+            </h6>
+            <p>
+             Plantomania is a revolutionary website , that completely digitalizes agro and nursery sector and empowers India.
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Useful links
+            </h6>
+            <p>
+              <a href="home.html" class="text-reset">Home</a>
+            </p>
+            <p>
+              <a href="#first" class="text-reset">Agro</a>
+            </p>
+            <p>
+              <a href="#first" class="text-reset">Nursery</a>
+            </p>
+            <p>
+              <a href="#second" class="text-reset">About</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fa fa-home me-3 text-secondary"></i> Pict , Pune - 411037</p>
+            <p>
+              <i class="fa fa-envelope me-3 text-secondary"></i>
+              Plantomania@gmail.com
+            </p>
+            <p><i class="fa fa-phone me-3 text-secondary"></i> + 82370-95572</p>
+            <p><i class="fa fa-print me-3 text-secondary"></i> + 82370-95572 </p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+
+  </footer>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

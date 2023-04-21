@@ -1,13 +1,31 @@
-<h2>You Have been Logged Out</h2>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantomannia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'users/loginsignup.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Lilita+One&family=Rajdhani&display=swap" rel="stylesheet">
+</head>
+<body>
 
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                 <a href="{% url 'login' %}">Log In Again</a>
-            </small>
-        </div>
- <div class="border-top pt-3">
-            <small class="text-muted">
-                 <a href="{% url 'land' %}">Log In Again</a>
-            </small>
-        </div>
 
+    <div class="jumbotron container shadow-lg">
+        <h1 class="display-4">You Are Logged-out Successfully!!</h1>
+        <p class="lead"> Thank you for visiting our Website.</p>
+        <hr class="my-4">
+        <p class="lead">
+          <a class="btn btn-success btn-lg" href="{% url 'login' %}" role="button">Login Again!</a>
+        </p>
+      </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

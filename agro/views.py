@@ -112,30 +112,36 @@ def fertresult(request):
     }
 
     return render(request, 'agro/fertresult.html',context)
-
-
+from tensorflow.keras.models import load_model
+model123 = load_model('model.h5')
+from PIL import Image
 def predictd(request):
-    data = 'plant_disease.ipynb'
-    f = h5.File(data, 'r')
-    model_path = 'plant_disease.ipynb'  # Path to your TensorFlow model
-    model = tf.keras.models.load_model(model_path)
-
     if request.method == 'POST':
         image_file = request.FILES['image']
-        image_bytes = image_file.read()
-        image = tf.image.decode_jpeg(image_bytes, channels=3)
-        image = tf.image.resize(image, [224, 224])
-        image = tf.expand_dims(image, axis=0)
-        image = image / 255.0
-
-        prediction = model.predict(image)
-        prediction = np.argmax(prediction)
-
-        if prediction == 0:
-            prediction_text = "Healthy Plant"
+        image = Image.open(image_file)
+        image = image.resize((256, 256))
+        img_array = tf.keras.preprocessing.image.img_to_array(image)
+        img_array = tf.expand_dims(img_array, 0)  # create a batch
+        predictions = model123.predict(img_array)
+        class_names = ['Apple___Apple_scab', 'Strawberry___Leaf_scorch', 'Tomato___Bacterial_spot']
+        predicted_class = class_names[np.argmax(predictions[0])]
+        confidence = round(100 * (np.max(predictions[0])), 2)
+        print(confidence, predicted_class)
+        if(predicted_class=='Apple___Apple_scab'):
+            var="Apple - Apple scab:Remove infected plant parts and destroy them.Rake up and destroy fallen leaves to reduce overwintering of the fungus.Apply fungicides to the plants."
+        elif(predicted_class=='Strawberry___Leaf_scorch'):
+            var="Strawberry - Leaf scorch:Remove infected plant parts and destroy them.Water the plants in the morning to give them time to dry during the day.Apply fungicides to the plants."
+        # create a context dictionary to pass to the template
         else:
-            prediction_text = "Diseased Plant"
+            var="Tomato - Bacterial spot:Remove infected plant parts and destroy them.Avoid working with plants when they are wet to prevent spreading the bacteria.Apply copper-based fungicides to the plants."
+        context = {
+            'image': image_file,
+            'confidence': confidence,
+            'predicted_class': predicted_class,
+            "var":var
+        }
+        return render(request, 'agro/predictfff.html', context)
 
-        return HttpResponse(prediction_text)
-
-    return render(request, 'predict.html')
+    return render(request, 'agro/predictfff.html')
+def disease(request):
+    return render(request,'agro/disease.html')
