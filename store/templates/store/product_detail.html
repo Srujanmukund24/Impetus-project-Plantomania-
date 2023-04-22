@@ -42,7 +42,7 @@
               <a class="nav-link" href="{% url 'options' %}">Agro</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About-Us</a>
+              <a class="nav-link" href="{% url 'team' %}">About-Us</a>
             </li>
             {% if user.is_authenticated   %}
             <li class="nav-item">
@@ -69,12 +69,12 @@
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" data-aos="fade-in-out"  data-aos-duration="2000" src="{{ product.image.url }}" alt="..." /></div>
                 <div class="col-md-6">
-                    <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
+                    <h1 class="display-5 fw-bolder"  data-aos="fade-left"      data-aos-duration="1000">{{ product.name }}</h1>
                     <div class="fs-5 mb-5">
 
                         <span> Price: <strong> ₹ {{ product.price }}/-</strong></span>
                     </div>
-                    <p class="lead">{{ product.description }}</p>
+                    <p class="lead"  data-aos="fade-in"      data-aos-duration="1000">{{ product.description }}</p>
                     <div class="d-flex">
                         <form method="POST" action="{% url 'add_to_cart' product.id %}">
                         {% csrf_token %}
@@ -93,7 +93,7 @@
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-12">
                     <h1 class="display-5 fw-bolder"> Care </h1>
-                    <p class="lead">{{ product.care }}</p>
+                    <p class="lead" data-aos="fade-in"      data-aos-duration="2000">{{ product.care }}</p>
                 </div>
             </div>
         </div>
@@ -161,17 +161,17 @@
             <h6 class="text-uppercase fw-bold mb-4">
               Useful links
             </h6>
-            <p>
-              <a href="home.html" class="text-reset">Home</a>
+           <p>
+              <a href="#" class="text-reset">Home</a>
             </p>
             <p>
-              <a href="#first" class="text-reset">Agro</a>
+              <a href="{% url 'options' %}" class="text-reset">Agro</a>
             </p>
             <p>
-              <a href="#first" class="text-reset">Nursery</a>
+              <a href="{% url 'plantop' %}" class="text-reset">Nursery</a>
             </p>
             <p>
-              <a href="#second" class="text-reset">About</a>
+              <a href="{% url 'team' %}" class="text-reset">About</a>
             </p>
           </div>
           <!-- Grid column -->

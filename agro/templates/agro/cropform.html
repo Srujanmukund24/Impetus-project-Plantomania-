@@ -43,7 +43,7 @@
                             <a class="nav-link" href="{% url 'options' %}">Agro</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">About-Us</a>
+                           <a class="nav-link" href="{% url 'team' %}">About-Us</a>
                         </li>
                         {% if user.is_authenticated   %}
                          <li class="nav-item">
@@ -86,7 +86,7 @@
                             <label class="form-label" htmlFor="N">
                                 Nitrogen
                             </label>
-                            <input type="number" id="Nitrogen" class="form-control" placeholder="'N'-Value" name="N"
+                            <input type="number" id="Nitrogen" class="form-control" placeholder=" ratio of Nitrogen content in soil" name="N"
                                 value={N} step={0.001} required />
                         </div>
                     </div>
@@ -95,7 +95,8 @@
                             <label class="form-label" htmlFor="P">
                                 Phosporous
                             </label>
-                            <input type="number" id="Phosporous" class="form-control" placeholder="'P'-Value" name="P"
+                            <input type="number" id="Phosporous" class="form-control" placeholder="ratio of Phosphorous content in soil
+" name="P"
                                 value={P} step={0.001} required />
                         </div>
                     </div>
@@ -104,7 +105,8 @@
                             <label class="form-label" htmlFor="k">
                                 Potassium
                             </label>
-                            <input type="number" id="Potassium" class="form-control" placeholder="'K'-Value" name="K"
+                            <input type="number" id="Potassium" class="form-control" placeholder="ratio of Potassium content in soil
+" name="K"
                                 value={K} step={0.001} required />
                         </div>
                     </div>
@@ -115,7 +117,7 @@
                             <label class="form-label" htmlFor="Temp">
                                 Temperature
                             </label>
-                            <input type="number" id="Nitrogen" class="form-control" placeholder="in Celsius"
+                            <input type="number" id="Nitrogen" class="form-control" placeholder="in Degree Celsius"
                                 name="temperature" value={temperature} step={0.001} required />
                         </div>
                     </div>
@@ -133,7 +135,7 @@
                             <label class="form-label" htmlFor="pH">
                                 pH-value
                             </label>
-                            <input type="number" id="Phosporous" class="form-control" placeholder="ph-Value" name="ph"
+                            <input type="number" id="Phosporous" class="form-control" placeholder=" ph value of the soil" name="ph"
                                 value={ph} step={0.001} required />
                         </div>
                     </div>
@@ -145,7 +147,7 @@
                             <label class="form-label" htmlFor="Rain">
                                 Rainfall
                             </label>
-                            <input type="number" id="Nitrogen" class="form-control" placeholder=" in Millimeter"
+                            <input type="number" id="Nitrogen" class="form-control" placeholder=" in Millimeter (mm)"
                                 name="rainfall" value={rainfall} step={0.001} required />
                         </div>
                     </div>
@@ -221,16 +223,16 @@
               Useful links
             </h6>
             <p>
-              <a href="home.html" class="text-reset">Home</a>
+              <a href="#" class="text-reset">Home</a>
             </p>
             <p>
-              <a href="#first" class="text-reset">Agro</a>
+              <a href="{% url 'options' %}" class="text-reset">Agro</a>
             </p>
             <p>
-              <a href="#first" class="text-reset">Nursery</a>
+              <a href="{% url 'plantop' %}" class="text-reset">Nursery</a>
             </p>
             <p>
-              <a href="#second" class="text-reset">About</a>
+              <a href="{% url 'team' %}" class="text-reset">About</a>
             </p>
           </div>
           <!-- Grid column -->

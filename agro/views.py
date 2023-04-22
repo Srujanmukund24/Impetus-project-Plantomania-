@@ -15,7 +15,11 @@ import h5py as h5
 
 # Create your views here.
 def options(request):
-    return render(request,'agro/options.html')
+    products = Product.objects.filter(category__name='top2')
+    context = {
+        'products': products
+    }
+    return render(request,'agro/options.html',context)
 def cropresult(request):
     model = pickle.load(open('Crop_Prediction.pkl', 'rb'))
     lis=[]
